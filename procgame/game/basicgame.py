@@ -35,11 +35,11 @@ class BasicGame(GameController):
 		super(BasicGame, self).__init__(machine_type)
 
 		self.aux_port = auxport.AuxPort(self)
-		if self.machine_type == pinproc.MachineTypeWPCAlphanumeric:
-			self.alpha_display = alphanumeric.AlphanumericDisplay(self.aux_port)
-		else:
-			self.dmd = DisplayController(self, width=128, height=32, message_font=font_named('Font07x5.dmd'))
-		self.score_display = ScoreDisplay(self, 0)
+		#if self.machine_type == pinproc.MachineTypeWPCAlphanumeric:
+		#	self.alpha_display = alphanumeric.AlphanumericDisplay(self.aux_port)
+		#else:
+			#self.dmd = DisplayController(self, width=128, height=32, message_font=font_named('Font07x5.dmd'))
+		#self.score_display = ScoreDisplay(self, 0)
 
 		
 		use_desktop = config.value_for_key_path(keypath='use_desktop', default=True)
@@ -48,7 +48,7 @@ class BasicGame(GameController):
 			from ..desktop import Desktop
 			self.desktop = Desktop()
 
-		if self.dmd: self.dmd.frame_handlers.append(self.set_last_frame)
+		#if self.dmd: self.dmd.frame_handlers.append(self.set_last_frame)
 
 	def load_config(self, path):
 		super(BasicGame,self).load_config(path)
@@ -69,11 +69,12 @@ class BasicGame(GameController):
 	def reset(self):
 		"""Calls super's reset and adds the :class:`ScoreDisplay` mode to the mode queue."""
 		super(BasicGame, self).reset()
-		self.modes.add(self.score_display)
+		#self.modes.add(self.score_display)
 		
 	def dmd_event(self):
-		"""Updates the DMD via :class:`DisplayController`."""
-		if self.dmd: self.dmd.update()
+                pass
+		#"""Updates the DMD via :class:`DisplayController`."""
+		#if self.dmd: self.dmd.update()
 	
 	def get_events(self):
 		"""Overriding GameController's implementation in order to append keyboard events."""
@@ -86,12 +87,13 @@ class BasicGame(GameController):
 		
 		Displays the last-received DMD frame on the desktop."""
 		super(BasicGame, self).tick()
-		self.show_last_frame()
+		#self.show_last_frame()
 
 	def score(self, points):
 		"""Convenience method to add *points* to the current player."""
-		p = self.current_player()
-		p.score += points
+		#p = self.current_player()
+		#p.score += points
+                pass
 
 	#
 	# Support for showing the last DMD frame on the desktop.
@@ -107,12 +109,14 @@ class BasicGame(GameController):
 	last_frame = None
 	
 	def set_last_frame(self, frame):
-		self.last_frame = frame
+            pass
+		#self.last_frame = frame
 	
 	def show_last_frame(self):
-		if self.desktop and self.last_frame:
-			self.desktop.draw(self.last_frame)
-			self.last_frame = None
+            pass
+		#if self.desktop and self.last_frame:
+			#self.desktop.draw(self.last_frame)
+		#	self.last_frame = None
 
 class BasicRecordableGame(BasicGame):
 	"""RecordableGameController provides the ability to record all switch events to a
@@ -174,9 +178,9 @@ class BasicRecordableGame(BasicGame):
 		if event_type == 99: # CTRL-C to quit
 			print "CTRL-C detected, quiting..."	
 			self.end_run_loop()
-		elif event_type == pinproc.EventTypeDMDFrameDisplayed: # DMD events
+		#elif event_type == pinproc.EventTypeDMDFrameDisplayed: # DMD events
 			#print "% 10.3f Frame event.  Value=%x" % (time.time()-self.t0, event_value)
-			self.dmd_event()
+		#	self.dmd_event()
 		else:
 			try:
 				sw = self.switches[event_value]

@@ -108,43 +108,47 @@ class Desktop():
 	
 	screen = None
 	""":class:`pygame.Surface` object representing the screen's surface."""
-	screen_multiplier = 4
+#	screen_multiplier = 4
 
 	def setup_window(self):
 		pygame.init()
-		self.screen = pygame.display.set_mode((128*self.screen_multiplier, 32*self.screen_multiplier))
+                self.screen = pygame.display.set_mode((720,1080))
+
+
+###		self.screen = pygame.display.set_mode((128*self.screen_multiplier, 32*self.screen_multiplier))
 		pygame.display.set_caption('Press CTRL-C to exit')
 
 	def draw(self, frame):
 		"""Draw the given :class:`~procgame.dmd.Frame` in the window."""
 		# Use adjustment to add a one pixel border around each dot, if
 		# the screen size is large enough to accomodate it.
-		if self.screen_multiplier >= 4:
-			adjustment = -1
-		else:
-			adjustment = 0
+#		if self.screen_multiplier >= 4:
+#			adjustment = -1
+#		else:
+#			adjustment = 0
 
-		bytes_per_pixel = 4
-		y_offset = 128*bytes_per_pixel*self.screen_multiplier*self.screen_multiplier
-		x_offset = bytes_per_pixel*self.screen_multiplier
+#		bytes_per_pixel = 4
+#		y_offset = 128*bytes_per_pixel*self.screen_multiplier*self.screen_multiplier
+#		x_offset = bytes_per_pixel*self.screen_multiplier
 
-		surface_array = array(self.screen)
+#		surface_array = array(self.screen)
 		
-		frame_string = frame.get_data()
+#		frame_string = frame.get_data()
 		
-		x = 0
-		y = 0
-		for dot in frame_string:
-			color_val = ord(dot)*16
-			index = y*y_offset + x*x_offset
-			surface_array[index:index+bytes_per_pixel] = (color_val,color_val,color_val,0)
-			x += 1
-			if x == 128:
-				x = 0
-				y += 1
-		del surface_array
+#		x = 0
+#		y = 0
+#		for dot in frame_string:
+#			color_val = ord(dot)*16
+#			index = y*y_offset + x*x_offset
+#			surface_array[index:index+bytes_per_pixel] = (color_val,color_val,color_val,0)
+#			x += 1
+#			if x == 128:
+#				x = 0
+#				y += 1
+#		del surface_array
 
-		pygame.display.update()
+#		pygame.display.update()
+                pass
 	
 	def __str__(self):
 		return '<Desktop pygame>'
