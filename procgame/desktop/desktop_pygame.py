@@ -112,7 +112,7 @@ class Desktop():
 
 	def setup_window(self):
 		pygame.init()
-                self.screen = pygame.display.set_mode((720,1080))
+                self.screen = pygame.display.set_mode((720,1280))
 
 
 ###		self.screen = pygame.display.set_mode((128*self.screen_multiplier, 32*self.screen_multiplier))
