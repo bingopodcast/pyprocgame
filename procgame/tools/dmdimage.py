@@ -4,7 +4,7 @@ import procgame.dmd
 import time
 import re
 import string
-import Image
+from PIL import Image
 
 import logging
 logging.basicConfig(level=logging.WARNING, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")

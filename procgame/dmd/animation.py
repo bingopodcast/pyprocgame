@@ -5,14 +5,14 @@ import sqlite3
 import bz2
 import StringIO
 import time
-import Image
+from PIL import Image
 from procgame.dmd import Frame
 from procgame import config
 import logging
 import re
 
 try:
-	import Image
+	from PIL import Image
 except ImportError:
 	Image = None
 
